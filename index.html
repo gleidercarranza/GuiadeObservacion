@@ -23,6 +23,8 @@
   --orange-tint:#FFF1E2;
   --green:#1FA060;
   --green-tint:#E6F6EE;
+  --red:#D9304E;
+  --red-tint:#FDE8EC;
   --radius-lg:16px;
   --radius-md:12px;
   --radius-sm:8px;
@@ -41,7 +43,8 @@ label{font-size:12.5px;font-weight:700;color:var(--ink-soft);display:block;margi
 .shell{display:flex;min-height:100vh;}
 .sidebar{width:240px;flex-shrink:0;background:var(--surface);border-right:1px solid var(--border);display:flex;flex-direction:column;padding:20px 16px;}
 .brand{display:flex;align-items:center;gap:10px;padding:4px 6px 18px;border-bottom:1px solid var(--border);margin-bottom:14px;}
-.brand .mark{width:36px;height:36px;border-radius:9px;background:linear-gradient(135deg,var(--indigo-1),var(--indigo-deep));display:flex;align-items:center;justify-content:center;color:#fff;font-size:18px;flex-shrink:0;}
+.brand .mark{width:36px;height:36px;border-radius:9px;overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;background:var(--surface-2);}
+.brand .mark img{width:100%;height:100%;object-fit:contain;}
 .brand .txt h1{font-size:15px;font-weight:700;margin:0;color:var(--ink);line-height:1.2;}
 .brand .txt p{font-size:11px;color:var(--ink-faint);margin:2px 0 0;}
 .nav{display:flex;flex-direction:column;gap:4px;flex:1;}
@@ -50,19 +53,26 @@ label{font-size:12.5px;font-weight:700;color:var(--ink-soft);display:block;margi
 .nav-item:hover{background:var(--surface-2);}
 .nav-item.active{background:var(--indigo-tint);color:var(--indigo-deep);}
 .main{flex:1;min-width:0;display:flex;flex-direction:column;}
-.topbar{background:linear-gradient(95deg,var(--indigo-deep),var(--indigo-1) 60%, var(--indigo-2));color:#fff;padding:20px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;}
-.topbar h2{font-size:19px;font-weight:700;margin:0;letter-spacing:-.01em;}
-.topbar .crumbs{font-size:12.5px;opacity:.85;margin-top:4px;}
-.content{padding:28px 32px 90px;flex:1;max-width:900px;margin:0 auto;width:100%;}
+.topbar{background:linear-gradient(95deg,var(--indigo-deep),var(--indigo-1) 60%, var(--indigo-2));color:#fff;padding:16px 32px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;}
+.topbar-left h2{font-size:19px;font-weight:700;margin:0;letter-spacing:-.01em;}
+.topbar-left .crumbs{font-size:12.5px;opacity:.85;margin-top:4px;}
+.topbar-logo{height:44px;width:auto;border-radius:8px;}
+.content{padding:28px 32px 90px;flex:1;max-width:960px;margin:0 auto;width:100%;}
 .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:24px 28px;margin-bottom:20px;box-shadow:var(--shadow-card);}
 .card h2{font-size:16px;font-weight:700;margin:0 0 16px;color:var(--ink);display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--border);padding-bottom:10px;}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;}
 .field{margin-bottom:18px;}
 .btn{padding:12px 20px;border-radius:var(--radius-sm);font-size:14px;font-weight:700;background:var(--indigo-1);color:#fff;transition:background .15s, transform .1s;display:inline-flex;align-items:center;gap:8px;}
 .btn:hover{background:var(--indigo-deep);}
 .btn:active{transform:scale(.98);}
 .btn.cta{background:var(--orange);box-shadow:var(--shadow-pop);}
 .btn.cta:hover{background:var(--orange-deep);}
+.btn.ghost{background:transparent;color:var(--indigo-1);border:1.5px solid var(--indigo-1);}
+.btn.ghost:hover{background:var(--indigo-tint);}
+.btn.sm{padding:6px 14px;font-size:12px;}
+.btn.danger{background:var(--red);}
+.btn.danger:hover{background:#b82641;}
 .btn-row{display:flex;gap:12px;justify-content:flex-end;margin-top:24px;flex-wrap:wrap;}
 .item-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:16px;padding:14px 0;border-bottom:1px solid var(--surface-2);}
 .item-row:last-child{border-bottom:none;}
@@ -82,16 +92,39 @@ label{font-size:12.5px;font-weight:700;color:var(--ink-soft);display:block;margi
 @keyframes fade{from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:translateY(0);}}
 .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--ink);color:#fff;padding:12px 24px;border-radius:var(--radius-sm);font-size:14px;opacity:0;transition:all .3s;pointer-events:none;z-index:50;}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th,td{padding:10px 12px;text-align:center;border:1px solid var(--border);}
+th{background:var(--surface-2);font-weight:700;color:var(--ink-soft);font-size:12px;text-transform:uppercase;letter-spacing:.03em;}
+td{font-weight:500;}
+.student-name-input{padding:6px 10px;font-size:13px;}
+.student-row{margin-bottom:8px;}
+.bar-chart{margin:16px 0;}
+.bar-row{display:flex;align-items:center;gap:12px;margin-bottom:10px;}
+.bar-label{width:150px;text-align:right;font-size:12px;font-weight:600;color:var(--ink-soft);flex-shrink:0;}
+.bar-track{flex:1;height:24px;background:var(--surface-2);border-radius:12px;overflow:hidden;}
+.bar-fill{height:100%;border-radius:12px;background:linear-gradient(90deg,var(--indigo-1),var(--indigo-2));transition:width .6s ease;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:11px;font-weight:700;min-width:28px;}
+.bar-val{font-size:12px;font-weight:700;color:var(--ink);width:30px;text-align:left;}
+.kpi-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));gap:14px;margin-bottom:20px;}
+.kpi-card{background:var(--surface-2);border-radius:var(--radius-md);padding:16px 18px;text-align:center;}
+.kpi-card .kpi-num{font-size:28px;font-weight:800;color:var(--indigo-deep);}
+.kpi-card .kpi-label{font-size:11px;font-weight:700;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.04em;margin-top:4px;}
+.kpi-card.high .kpi-num{color:var(--green);}
+.kpi-card.low .kpi-num{color:var(--red);}
+.kpi-card.orange .kpi-num{color:var(--orange);}
+.student-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;}
+.student-tab{padding:8px 16px;border-radius:var(--radius-sm);font-size:13px;font-weight:600;background:var(--surface-2);color:var(--ink-soft);border:1.5px solid var(--border);}
+.student-tab:hover{border-color:var(--indigo-1);color:var(--indigo-1);}
+.student-tab.active{background:var(--indigo-tint);border-color:var(--indigo-1);color:var(--indigo-deep);}
 </style>
 </head>
 <body>
 <div class="shell">
   <aside class="sidebar">
     <div class="brand">
-      <div class="mark">📊</div>
+      <div class="mark"><img src="logo.png" alt="Logo"></div>
       <div class="txt">
         <h1>EVA Matemáticas</h1>
-        <p>Institución La Pérez</p>
+        <p>Institución Educativa La Pérez</p>
       </div>
     </div>
     <nav class="nav">
@@ -104,18 +137,19 @@ label{font-size:12.5px;font-weight:700;color:var(--ink-soft);display:block;margi
       <button class="nav-item" onclick="showPanel('panel-inst2', this)">
         <span class="ic">📖</span><span>Diario de Campo</span>
       </button>
-      <button class="nav-item" onclick="showPanel('panel-export', this)">
-        <span class="ic">💾</span><span>Exportar Datos</span>
+      <button class="nav-item" onclick="showPanel('panel-consolidado', this)">
+        <span class="ic">📊</span><span>Consolidado</span>
       </button>
     </nav>
   </aside>
 
   <div class="main">
     <div class="topbar">
-      <div>
+      <div class="topbar-left">
         <h2>Recolección de Información</h2>
         <div class="crumbs">Implementación de Recursos Educativos Digitales (RED)</div>
       </div>
+      <img src="logo.png" alt="Logo institución" class="topbar-logo">
     </div>
 
     <div class="content">
@@ -140,17 +174,17 @@ label{font-size:12.5px;font-weight:700;color:var(--ink-soft);display:block;margi
               <label>Grado</label>
               <select id="dg_grado">
                 <option value="">Seleccione...</option>
-                <option value="Cuarto">Cuarto de Primaria</option>
                 <option value="Tercero">Tercero de Primaria</option>
+                <option value="Cuarto">Cuarto de Primaria</option>
                 <option value="Quinto">Quinto de Primaria</option>
               </select>
             </div>
             <div class="field">
-              <label>Número de estudiantes observados</label>
-              <input type="number" id="dg_num" min="1">
+              <label>Número de estudiantes</label>
+              <input type="number" id="dg_num" min="1" placeholder="Ingrese cantidad y presione Generar">
             </div>
             <div class="field">
-              <label>Observador (Investigador)</label>
+              <label>Observador</label>
               <input type="text" id="dg_obs" placeholder="Nombre del docente/investigador">
             </div>
           </div>
@@ -162,13 +196,23 @@ label{font-size:12.5px;font-weight:700;color:var(--ink-soft);display:block;margi
             <label>Duración de la sesión (minutos)</label>
             <input type="number" id="dg_dur" placeholder="Ej. 45">
           </div>
+
+          <div style="border-top:1px solid var(--border);padding-top:16px;margin-top:8px;">
+            <label style="margin-bottom:10px;">Registro de estudiantes</label>
+            <div class="btn-row" style="justify-content:flex-start;margin-top:0;">
+              <button class="btn sm" onclick="generateStudents()">Generar estudiantes</button>
+              <button class="btn sm ghost" onclick="addStudent()">+ Añadir uno</button>
+            </div>
+            <div id="student-roster"></div>
+          </div>
+
           <div class="btn-row">
             <button class="btn cta" onclick="document.querySelectorAll('.nav-item')[1].click()">Continuar a Guía ➔</button>
           </div>
         </div>
       </div>
 
-      <!-- PANEL: INSTRUMENTO 1 -->
+      <!-- PANEL: INSTRUMENTO 1 - GUÍA DE OBSERVACIÓN -->
       <div id="panel-inst1" class="panel">
         <div class="card">
           <h2>Instrumento 1: Guía de Observación</h2>
@@ -182,7 +226,15 @@ label{font-size:12.5px;font-weight:700;color:var(--ink-soft);display:block;margi
             <span><b>4</b> = Siempre</span>
           </div>
 
-          <div id="inst1-items"></div>
+          <h3 style="font-size:14px;font-weight:700;margin:0 0 12px;color:var(--indigo-deep);">A. Puntajes por estudiante</h3>
+          <div id="student-score-matrix">
+            <p style="color:var(--ink-faint);font-size:13px;">Primero registre los estudiantes en Datos Generales.</p>
+          </div>
+
+          <div style="border-top:1px solid var(--border);padding-top:16px;margin-top:20px;">
+            <h3 style="font-size:14px;font-weight:700;margin:0 0 12px;color:var(--indigo-deep);">B. Indicadores grupales</h3>
+            <div id="inst1-items"></div>
+          </div>
 
           <div class="field" style="margin-top:24px;">
             <label>Observaciones generales</label>
@@ -196,7 +248,7 @@ label{font-size:12.5px;font-weight:700;color:var(--ink-soft);display:block;margi
         </div>
       </div>
 
-      <!-- PANEL: INSTRUMENTO 2 -->
+      <!-- PANEL: INSTRUMENTO 2 - DIARIO DE CAMPO -->
       <div id="panel-inst2" class="panel">
         <div class="card">
           <h2>Instrumento 2: Diario de Campo</h2>
@@ -208,7 +260,7 @@ label{font-size:12.5px;font-weight:700;color:var(--ink-soft);display:block;margi
             <label>Participación de los estudiantes</label>
             <textarea id="inst2_participacion" placeholder="Dinámicas de interacción, preguntas, respuestas..."></textarea>
           </div>
-          
+
           <div class="field" style="margin-top:24px;">
             <label>Comportamientos relacionados con la motivación observados</label>
             <div class="checkbox-group">
@@ -250,17 +302,19 @@ label{font-size:12.5px;font-weight:700;color:var(--ink-soft);display:block;margi
         </div>
       </div>
 
-      <!-- PANEL: EXPORT -->
-      <div id="panel-export" class="panel">
-        <div class="card" style="text-align:center; padding: 60px 20px;">
-          <div style="font-size:48px; margin-bottom:16px;">📊</div>
-          <h2>Exportar Consolidado</h2>
-          <p style="color:var(--ink-soft); max-width:500px; margin:0 auto 24px;">
-            Genera un archivo Excel (.xlsx) que consolida los datos generales, las valoraciones de la Guía de Observación y el registro narrativo del Diario de Campo para su posterior análisis.
-          </p>
-          <button class="btn cta" onclick="exportToExcel()" style="font-size:16px; padding:14px 28px;">
-            Descargar Consolidado (.xlsx)
-          </button>
+      <!-- PANEL: CONSOLIDADO -->
+      <div id="panel-consolidado" class="panel">
+        <div class="card">
+          <h2>Consolidado de la Sesión</h2>
+          <div id="kpi-area"></div>
+          <div id="chart-area"></div>
+          <div id="scores-table-area"></div>
+          <div id="ranking-area"></div>
+          <div class="btn-row" style="margin-top:24px;">
+            <button class="btn cta" onclick="exportToExcel()" style="font-size:16px; padding:14px 28px;">
+              Descargar Consolidado (.xlsx)
+            </button>
+          </div>
         </div>
       </div>
 
@@ -271,11 +325,21 @@ label{font-size:12.5px;font-weight:700;color:var(--ink-soft);display:block;margi
 <div id="toast" class="toast"></div>
 
 <script>
-  // State management
+  // ===== STATE =====
   const state = {
-    inst1: {},
+    students: [],
+    studentNames: {},
+    studentScores: {},
+    indicators: {},
     inst2: {}
   };
+
+  function getStudentName(sid) {
+    return state.studentNames[sid] || ('Est. ' + sid.replace('s',''));
+  }
+
+  const studentCatKey = ['motivacion','atencion','participacion','aprendizaje','interaccion'];
+  const studentCatLabel = ['Motivación','Atención','Participación','Aprendizaje matemático','Interacción social'];
 
   const indicators = [
     { cat: 'Interés', text: 'Muestra entusiasmo al iniciar la actividad matemática.', id: 'q1' },
@@ -292,121 +356,351 @@ label{font-size:12.5px;font-weight:700;color:var(--ink-soft);display:block;margi
     { cat: 'Actitud', text: 'Manifiesta deseos de continuar utilizando el recurso digital.', id: 'q12' }
   ];
 
+  // ===== INIT =====
+  document.addEventListener('DOMContentLoaded', function(){
+    document.getElementById('dg_fecha').value = new Date().toISOString().slice(0,10);
+    initInst1();
+    generateStudents();
+  });
+
+  // ===== STUDENT ROSTER =====
+  function generateStudents() {
+    const num = parseInt(document.getElementById('dg_num').value) || 0;
+    state.students = [];
+    state.studentScores = {};
+    state.studentNames = {};
+    for (let i = 1; i <= num; i++) {
+      const sid = 's' + i;
+      state.students.push(sid);
+      state.studentScores[sid] = {};
+      state.studentNames[sid] = '';
+      studentCatKey.forEach(k => state.studentScores[sid][k] = null);
+    }
+    renderRoster();
+    renderScoreMatrix();
+    renderConsolidado();
+  }
+
+  function addStudent() {
+    const idx = state.students.length + 1;
+    const sid = 's' + idx;
+    state.students.push(sid);
+    state.studentScores[sid] = {};
+    state.studentNames[sid] = '';
+    studentCatKey.forEach(k => state.studentScores[sid][k] = null);
+    document.getElementById('dg_num').value = state.students.length;
+    renderRoster();
+    renderScoreMatrix();
+    renderConsolidado();
+  }
+
+  function removeStudent(sid) {
+    state.students = state.students.filter(s => s !== sid);
+    delete state.studentScores[sid];
+    document.getElementById('dg_num').value = state.students.length;
+    renderRoster();
+    renderScoreMatrix();
+    renderConsolidado();
+  }
+
+  function updateStudentName(sid, name) {
+    state.studentNames[sid] = name;
+    renderScoreMatrix();
+  }
+
+  function renderRoster() {
+    const container = document.getElementById('student-roster');
+    if (state.students.length === 0) {
+      container.innerHTML = '<p style="color:var(--ink-faint);font-size:13px;">No hay estudiantes registrados.</p>';
+      return;
+    }
+    let html = '<div class="grid2" style="margin-top:8px;">';
+    state.students.forEach(sid => {
+      html += '<div class="student-row" style="display:flex;align-items:center;gap:8px;">';
+      html += '<input type="text" class="student-name-input" placeholder="Nombre del estudiante" oninput="updateStudentName(\''+sid+'\',this.value)" style="flex:1;">';
+      html += '<button class="btn sm danger" onclick="removeStudent(\''+sid+'\')" style="padding:6px 10px;font-size:11px;">✕</button>';
+      html += '</div>';
+    });
+    html += '</div>';
+    container.innerHTML = html;
+  }
+
+  // ===== SCORE MATRIX (per student x 5 categories) =====
+  function renderScoreMatrix() {
+    const container = document.getElementById('student-score-matrix');
+    if (state.students.length === 0) {
+      container.innerHTML = '<p style="color:var(--ink-faint);font-size:13px;">Primero registre los estudiantes en Datos Generales.</p>';
+      return;
+    }
+    let html = '<div style="overflow-x:auto;"><table><thead><tr><th>Categoría</th>';
+    state.students.forEach(sid => {
+      html += '<th>' + getStudentName(sid) + '</th>';
+    });
+    html += '</tr></thead><tbody>';
+    studentCatKey.forEach((k, idx) => {
+      html += '<tr><td style="text-align:left;font-weight:700;color:var(--indigo-deep);">' + studentCatLabel[idx] + '</td>';
+      state.students.forEach(sid => {
+        const val = state.studentScores[sid][k];
+        html += '<td><div class="scale" style="justify-content:center;">';
+        for (let v = 1; v <= 4; v++) {
+          html += '<button class="' + (val === v ? 'sel' : '') + '" onclick="setStudentScore(\''+sid+'\',\''+k+'\','+v+')">'+v+'</button>';
+        }
+        html += '</div></td>';
+      });
+      html += '</tr>';
+    });
+    html += '</tbody></table></div>';
+    container.innerHTML = html;
+  }
+
+  function setStudentScore(sid, cat, val) {
+    if (state.studentScores[sid][cat] === val) {
+      state.studentScores[sid][cat] = null;
+    } else {
+      state.studentScores[sid][cat] = val;
+    }
+    renderScoreMatrix();
+    renderConsolidado();
+  }
+
+  // ===== GROUP INDICATORS (12 items) =====
   function initInst1() {
     const container = document.getElementById('inst1-items');
     let html = '';
     indicators.forEach(ind => {
-      html += `
-        <div class="item-row">
-          <div>
-            <span class="item-category">${ind.cat}</span>
-            <div class="item-text">${ind.text}</div>
-          </div>
-          <div class="scale" id="scale_${ind.id}">
-            <button onclick="setScore('${ind.id}', 1)">1</button>
-            <button onclick="setScore('${ind.id}', 2)">2</button>
-            <button onclick="setScore('${ind.id}', 3)">3</button>
-            <button onclick="setScore('${ind.id}', 4)">4</button>
-          </div>
-        </div>
-      `;
+      html += '<div class="item-row"><div>';
+      html += '<span class="item-category">' + ind.cat + '</span>';
+      html += '<div class="item-text">' + ind.text + '</div></div>';
+      html += '<div class="scale" id="scale_' + ind.id + '">';
+      for (let v = 1; v <= 4; v++) {
+        html += '<button onclick="setIndicator(\'' + ind.id + '\',' + v + ')">' + v + '</button>';
+      }
+      html += '</div></div>';
     });
     container.innerHTML = html;
   }
 
-  function setScore(qId, val) {
-    state.inst1[qId] = val;
-    const btns = document.querySelectorAll(`#scale_${qId} button`);
+  function setIndicator(qId, val) {
+    if (state.indicators[qId] === val) {
+      state.indicators[qId] = null;
+    } else {
+      state.indicators[qId] = val;
+    }
+    const btns = document.querySelectorAll('#scale_' + qId + ' button');
     btns.forEach(b => b.classList.remove('sel'));
-    btns[val-1].classList.add('sel');
+    if (state.indicators[qId]) {
+      btns[state.indicators[qId] - 1].classList.add('sel');
+    }
+    renderConsolidado();
   }
 
+  // ===== PANEL NAVIGATION =====
   function showPanel(id, btn) {
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
     document.getElementById(id).classList.add('active');
-    
     document.querySelectorAll('.nav-item').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
+    if (btn) btn.classList.add('active');
+    if (id === 'panel-consolidado') renderConsolidado();
   }
 
+  // ===== CONSOLIDADO =====
+  function renderConsolidado() {
+    renderKPI();
+    renderChart();
+    renderScoresTable();
+    renderRanking();
+  }
+
+  function getStudentAvg(sid) {
+    const scores = state.studentScores[sid];
+    const vals = studentCatKey.map(k => scores[k]).filter(v => v !== null);
+    if (vals.length === 0) return null;
+    return vals.reduce((a,b) => a + b, 0) / vals.length;
+  }
+
+  function getCategoryAvg(catKey) {
+    const vals = state.students.map(sid => state.studentScores[sid][catKey]).filter(v => v !== null);
+    if (vals.length === 0) return null;
+    return vals.reduce((a,b) => a + b, 0) / vals.length;
+  }
+
+  function renderKPI() {
+    const container = document.getElementById('kpi-area');
+    const n = state.students.length;
+    const avgs = studentCatKey.map(k => getCategoryAvg(k)).filter(v => v !== null);
+    const overall = avgs.length > 0 ? (avgs.reduce((a,b) => a + b, 0) / avgs.length) : null;
+    const maxCat = avgs.length > 0 ? Math.max(...avgs) : null;
+    const minCat = avgs.length > 0 ? Math.min(...avgs) : null;
+    const maxCatIdx = maxCat !== null ? avgs.indexOf(maxCat) : -1;
+    const minCatIdx = minCat !== null ? avgs.indexOf(minCat) : -1;
+
+    let html = '<div class="kpi-grid">';
+    html += '<div class="kpi-card"><div class="kpi-num">' + n + '</div><div class="kpi-label">Estudiantes</div></div>';
+    html += '<div class="kpi-card high"><div class="kpi-num">' + (overall !== null ? overall.toFixed(2) : '—') + '</div><div class="kpi-label">Promedio general</div></div>';
+    html += '<div class="kpi-card orange"><div class="kpi-num">' + (maxCat !== null ? maxCat.toFixed(2) : '—') + '</div><div class="kpi-label">Mejor categoría: ' + (maxCatIdx >= 0 ? studentCatLabel[maxCatIdx] : '') + '</div></div>';
+    html += '<div class="kpi-card low"><div class="kpi-num">' + (minCat !== null ? minCat.toFixed(2) : '—') + '</div><div class="kpi-label">Peor categoría: ' + (minCatIdx >= 0 ? studentCatLabel[minCatIdx] : '') + '</div></div>';
+    html += '</div>';
+    container.innerHTML = html;
+  }
+
+  function renderChart() {
+    const container = document.getElementById('chart-area');
+    let html = '<h3 style="font-size:14px;font-weight:700;margin:0 0 12px;color:var(--indigo-deep);">Promedio por categoría</h3><div class="bar-chart">';
+    studentCatKey.forEach((k, idx) => {
+      const avg = getCategoryAvg(k);
+      const pct = avg !== null ? (avg / 4 * 100) : 0;
+      const color = avg >= 3 ? 'var(--green)' : avg >= 2 ? 'var(--orange)' : 'var(--red)';
+      html += '<div class="bar-row">';
+      html += '<div class="bar-label">' + studentCatLabel[idx] + '</div>';
+      html += '<div class="bar-track"><div class="bar-fill" style="width:' + pct + '%;background:' + color + ';">' + (avg !== null ? avg.toFixed(1) : '') + '</div></div>';
+      html += '<div class="bar-val">' + (avg !== null ? avg.toFixed(1) : '—') + '</div>';
+      html += '</div>';
+    });
+    html += '</div>';
+    container.innerHTML = html;
+  }
+
+  function renderScoresTable() {
+    const container = document.getElementById('scores-table-area');
+    if (state.students.length === 0) {
+      container.innerHTML = '';
+      return;
+    }
+    let html = '<h3 style="font-size:14px;font-weight:700;margin:20px 0 12px;color:var(--indigo-deep);">Puntajes por estudiante</h3>';
+    html += '<div style="overflow-x:auto;"><table><thead><tr><th>Estudiante</th>';
+    studentCatLabel.forEach(l => html += '<th>' + l + '</th>');
+    html += '<th>Promedio</th></tr></thead><tbody>';
+    state.students.forEach(sid => {
+      const label = getStudentName(sid);
+      const avg = getStudentAvg(sid);
+      html += '<tr><td style="text-align:left;font-weight:600;">' + label + '</td>';
+      studentCatKey.forEach(k => {
+        const v = state.studentScores[sid][k];
+        html += '<td>' + (v !== null ? v : '—') + '</td>';
+      });
+      html += '<td><strong>' + (avg !== null ? avg.toFixed(2) : '—') + '</strong></td></tr>';
+    });
+    html += '</tbody></table></div>';
+    container.innerHTML = html;
+  }
+
+  function renderRanking() {
+    const container = document.getElementById('ranking-area');
+    const scored = state.students.filter(sid => getStudentAvg(sid) !== null);
+    if (scored.length < 2) { container.innerHTML = ''; return; }
+    scored.sort((a,b) => getStudentAvg(b) - getStudentAvg(a));
+    let html = '<h3 style="font-size:14px;font-weight:700;margin:20px 0 12px;color:var(--indigo-deep);">Ranking de estudiantes</h3>';
+    html += '<div style="overflow-x:auto;"><table><thead><tr><th>#</th><th>Estudiante</th><th>Promedio</th><th>Nivel</th></tr></thead><tbody>';
+    scored.forEach((sid, idx) => {
+      const label = getStudentName(sid);
+      const avg = getStudentAvg(sid);
+      const level = avg >= 3 ? 'Alto' : avg >= 2 ? 'Medio' : 'Bajo';
+      const color = avg >= 3 ? 'var(--green)' : avg >= 2 ? 'var(--orange)' : 'var(--red)';
+      html += '<tr><td>' + (idx + 1) + '</td><td style="text-align:left;">' + label + '</td>';
+      html += '<td><strong>' + avg.toFixed(2) + '</strong></td>';
+      html += '<td style="color:' + color + ';font-weight:700;">' + level + '</td></tr>';
+    });
+    html += '</tbody></table></div>';
+    container.innerHTML = html;
+  }
+
+  // ===== SAVE =====
+  function saveInst1() {
+    showToast('Guía de observación guardada temporalmente.');
+  }
+  function saveInst2() {
+    showToast('Diario de campo guardado temporalmente.');
+  }
+
+  // ===== EXPORT TO EXCEL =====
+  function exportToExcel() {
+    if (typeof XLSX === 'undefined') {
+      alert("La librería para exportar Excel no se pudo cargar. Asegúrate de tener conexión a Internet.");
+      return;
+    }
+    const wb = XLSX.utils.book_new();
+
+    // Hoja 1: Datos Generales
+    const dg = [
+      ['DATOS GENERALES DE LA SESIÓN', ''],
+      ['Institución', document.getElementById('dg_inst').value],
+      ['Proyecto', document.getElementById('dg_proj').value],
+      ['Fecha', document.getElementById('dg_fecha').value],
+      ['Grado', document.getElementById('dg_grado').value],
+      ['No. Estudiantes', document.getElementById('dg_num').value],
+      ['Observador', document.getElementById('dg_obs').value],
+      ['Actividad', document.getElementById('dg_act').value],
+      ['Duración (min)', document.getElementById('dg_dur').value],
+      ['',''],
+      ['ESTUDIANTES REGISTRADOS', '']
+    ];
+    state.students.forEach(sid => {
+      dg.push([getStudentName(sid), '']);
+    });
+    const wsDG = XLSX.utils.aoa_to_sheet(dg);
+    XLSX.utils.book_append_sheet(wb, wsDG, 'Datos Generales');
+
+    // Hoja 2: Puntajes por estudiante
+    const ps = [['Estudiante', ...studentCatLabel, 'Promedio']];
+    state.students.forEach(sid => {
+      const label = getStudentName(sid);
+      const row = [label];
+      studentCatKey.forEach(k => row.push(state.studentScores[sid][k] !== null ? state.studentScores[sid][k] : ''));
+      const avg = getStudentAvg(sid);
+      row.push(avg !== null ? avg.toFixed(2) : '');
+      ps.push(row);
+    });
+    const wsPS = XLSX.utils.aoa_to_sheet(ps);
+    XLSX.utils.book_append_sheet(wb, wsPS, 'Puntajes');
+
+    // Hoja 3: Promedios por categoría
+    const pc = [['Categoría', 'Promedio']];
+    studentCatKey.forEach((k, idx) => {
+      const avg = getCategoryAvg(k);
+      pc.push([studentCatLabel[idx], avg !== null ? avg.toFixed(2) : '']);
+    });
+    const wsPC = XLSX.utils.aoa_to_sheet(pc);
+    XLSX.utils.book_append_sheet(wb, wsPC, 'Categorías');
+
+    // Hoja 4: Indicadores grupales
+    const ig = [['Categoría', 'Indicador', 'Valoración (1-4)']];
+    indicators.forEach(ind => {
+      ig.push([ind.cat, ind.text, state.indicators[ind.id] || 'No evaluado']);
+    });
+    ig.push(['','','']);
+    ig.push(['OBSERVACIONES', document.getElementById('inst1_obs').value, '']);
+    const wsIG = XLSX.utils.aoa_to_sheet(ig);
+    XLSX.utils.book_append_sheet(wb, wsIG, 'Indicadores Grupales');
+
+    // Hoja 5: Diario de Campo
+    const motivSel = Array.from(document.querySelectorAll('.motiv-chk:checked')).map(cb => cb.value).join(', ');
+    const dc = [
+      ['SECCIÓN', 'REGISTRO'],
+      ['¿Qué ocurrió?', document.getElementById('inst2_ocurrio').value],
+      ['Participación', document.getElementById('inst2_participacion').value],
+      ['Comportamientos (lista)', motivSel],
+      ['Descripción', document.getElementById('inst2_motiv_desc').value],
+      ['Uso de RED', document.getElementById('inst2_uso_red').value],
+      ['Situaciones significativas', document.getElementById('inst2_significativas').value],
+      ['Reflexión', document.getElementById('inst2_reflexion').value],
+      ['Interpretación', document.getElementById('inst2_interpretacion').value],
+      ['Recomendaciones', document.getElementById('inst2_recomendaciones').value]
+    ];
+    const wsDC = XLSX.utils.aoa_to_sheet(dc);
+    XLSX.utils.book_append_sheet(wb, wsDC, 'Diario de Campo');
+
+    const dateStr = document.getElementById('dg_fecha').value || new Date().toISOString().slice(0,10);
+    XLSX.writeFile(wb, `Consolidado_EVA_${dateStr}.xlsx`);
+    showToast('Excel generado y descargado exitosamente.');
+  }
+
+  // ===== TOAST =====
   function showToast(msg) {
     const t = document.getElementById('toast');
     t.textContent = msg;
     t.classList.add('show');
     setTimeout(() => t.classList.remove('show'), 3000);
   }
-
-  function saveInst1() {
-    showToast('Guía de observación guardada temporalmente.');
-  }
-
-  function saveInst2() {
-    showToast('Diario de campo guardado temporalmente.');
-  }
-
-  function exportToExcel() {
-    if(typeof XLSX === 'undefined') {
-      alert("La librería para exportar Excel no se pudo cargar. Asegúrate de tener conexión a Internet para descargarla desde el CDN.");
-      return;
-    }
-
-    const wb = XLSX.utils.book_new();
-
-    // Hoja 1: Datos Generales
-    const dgData = [
-      ['DATOS GENERALES DE LA SESIÓN', ''],
-      ['Institución', document.getElementById('dg_inst').value],
-      ['Proyecto', document.getElementById('dg_proj').value],
-      ['Fecha', document.getElementById('dg_fecha').value],
-      ['Grado', document.getElementById('dg_grado').value],
-      ['No. Estudiantes Observados', document.getElementById('dg_num').value],
-      ['Observador', document.getElementById('dg_obs').value],
-      ['Actividad desarrollada', document.getElementById('dg_act').value],
-      ['Duración (min)', document.getElementById('dg_dur').value]
-    ];
-    const wsDG = XLSX.utils.aoa_to_sheet(dgData);
-    XLSX.utils.book_append_sheet(wb, wsDG, 'Datos Generales');
-
-    // Hoja 2: Guía de Observación (Instrumento 1)
-    const i1Data = [
-      ['CATEGORÍA', 'INDICADOR', 'VALORACIÓN (1-4)']
-    ];
-    indicators.forEach(ind => {
-      const val = state.inst1[ind.id] || 'No evaluado';
-      i1Data.push([ind.cat, ind.text, val]);
-    });
-    i1Data.push(['','','']);
-    i1Data.push(['OBSERVACIONES GENERALES', document.getElementById('inst1_obs').value, '']);
-
-    const wsI1 = XLSX.utils.aoa_to_sheet(i1Data);
-    XLSX.utils.book_append_sheet(wb, wsI1, 'Guía Observación');
-
-    // Hoja 3: Diario de Campo (Instrumento 2)
-    const motivSelected = Array.from(document.querySelectorAll('.motiv-chk:checked')).map(cb => cb.value).join(', ');
-    
-    const i2Data = [
-      ['SECCIÓN', 'REGISTRO DESCRIPTIVO'],
-      ['¿Qué ocurrió durante la actividad?', document.getElementById('inst2_ocurrio').value],
-      ['Participación de los estudiantes', document.getElementById('inst2_participacion').value],
-      ['Comportamientos relacionados con motivación (Lista)', motivSelected],
-      ['Descripción de comportamientos', document.getElementById('inst2_motiv_desc').value],
-      ['Uso de los Recursos Educativos Digitales', document.getElementById('inst2_uso_red').value],
-      ['Situaciones significativas observadas', document.getElementById('inst2_significativas').value],
-      ['Reflexión del investigador', document.getElementById('inst2_reflexion').value],
-      ['Interpretación preliminar', document.getElementById('inst2_interpretacion').value],
-      ['Recomendaciones siguiente sesión', document.getElementById('inst2_recomendaciones').value]
-    ];
-    const wsI2 = XLSX.utils.aoa_to_sheet(i2Data);
-    XLSX.utils.book_append_sheet(wb, wsI2, 'Diario de Campo');
-
-    // Descargar
-    const dateStr = document.getElementById('dg_fecha').value || new Date().toISOString().slice(0,10);
-    XLSX.writeFile(wb, `Consolidado_Observacion_LaPerez_${dateStr}.xlsx`);
-    showToast('Excel generado y descargado exitosamente.');
-  }
-
-  // Initialize
-  initInst1();
 </script>
 </body>
 </html>
