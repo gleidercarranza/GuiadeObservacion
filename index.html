@@ -1570,18 +1570,41 @@ function renderPreguntaCharts(){
 function renderDiarioDetalle(){
   if(!_adminSelectedSession) return;
   const s = _adminSelectedSession;
+  const d = s.diario || {};
   const nivel = s.nivelMotivacion;
   const difs = s.dificultadesGrupales || [];
   const cont = document.getElementById('admin-diario-detalle');
+
+  const campo = (label, valor) => `
+    <div style="margin-bottom:16px;">
+      <span style="font-size:12.5px; color:#777; font-weight:600;">${label}</span>
+      <p style="font-size:13.5px; color:#333; margin:6px 0 0; white-space:pre-wrap; line-height:1.5;">${valor && String(valor).trim() ? escapeHtml(String(valor)) : '<span style="color:#bbb;">— Sin registrar —</span>'}</p>
+    </div>
+  `;
+
   cont.innerHTML = `
     <div style="margin-bottom:16px;">
-      <span style="font-size:12.5px; color:#777;">Nivel de motivación grupal registrado</span><br>
+      <span style="font-size:12.5px; color:#777; font-weight:600;">Nivel de motivación grupal registrado</span><br>
       ${nivel ? `<span class="lvl-pill ${nivel}" style="margin-top:6px; display:inline-block;">${nivel}</span>` : '<span style="color:#999;">No definido</span>'}
     </div>
-    <div>
-      <span style="font-size:12.5px; color:#777;">Dificultades grupales marcadas en esta sesión</span>
-      ${difs.length ? `<ul style="margin:8px 0 0; padding-left:18px;">${difs.map(d=>`<li style="font-size:13px; margin-bottom:4px;">${escapeHtml(d)}</li>`).join('')}</ul>` : '<p style="color:#999; font-size:13px; margin-top:6px;">Ninguna marcada.</p>'}
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0 24px;">
+      ${campo('Duración de la clase observada', d.duracion)}
+      ${campo('Tema observado', s.tema)}
     </div>
+
+    ${campo('Contexto y dinámica del grupo', d.ocurrio)}
+    ${campo('Comportamientos observados (grupal)', d.comportamientos)}
+    ${campo('Frases o expresiones de los estudiantes', d.frases)}
+
+    <div style="margin-bottom:16px;">
+      <span style="font-size:12.5px; color:#777; font-weight:600;">Dificultades grupales marcadas en esta sesión</span>
+      ${difs.length ? `<ul style="margin:8px 0 0; padding-left:18px;">${difs.map(x=>`<li style="font-size:13px; margin-bottom:4px;">${escapeHtml(x)}</li>`).join('')}</ul>` : '<p style="color:#999; font-size:13px; margin:6px 0 0;">Ninguna marcada.</p>'}
+    </div>
+
+    ${campo('Observaciones adicionales', d.observaciones)}
+    ${campo('Reflexión del investigador', d.reflexion)}
+    ${campo('Justificación del nivel seleccionado', d.justificacion)}
   `;
 }
 
